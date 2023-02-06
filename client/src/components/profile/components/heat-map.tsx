@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import CalendarHeatMap from '@freecodecamp/react-calendar-heatmap';
+import CalendarHeatMap from 'react-calendar-heatmap';
 import addDays from 'date-fns/addDays';
 import addMonths from 'date-fns/addMonths';
 import isEqual from 'date-fns/isEqual';
@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
 import { Row, Spacer } from '@freecodecamp/ui';
 
-import '@freecodecamp/react-calendar-heatmap/dist/styles.css';
+import 'react-calendar-heatmap/dist/styles.css';
 import './heatmap.css';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

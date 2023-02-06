@@ -1,4 +1,4 @@
-import { WindowLocation } from '@reach/router';
+import { WindowLocation } from '@gatsbyjs/reach-router';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { goToAnchor } from 'react-scrollable-anchor';
