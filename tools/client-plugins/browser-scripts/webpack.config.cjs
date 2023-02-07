@@ -89,6 +89,17 @@ module.exports = (env = {}) => {
         process: require.resolve('process/browser.js')
       },
       extensions: ['.js', '.ts']
+    },
+    // To keep the client React version decoupled from the curriculum React
+    // version we use externals to stops Webpack from bundling React and
+    // ReactDOM (they're fetched from unpkg when needed by the client or
+    // curriculum tests). react-dom/server and react-dom/test-utils are included
+    // separately because enzyme-adapter-react-16 imports them directly.
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      'react-dom/server': 'ReactDOMServer',
+      'react-dom/test-utils': 'ReactTestUtils'
     }
   };
 };
