@@ -168,7 +168,7 @@
     "js-yaml": "4.1.0",
     "monaco-editor-webpack-plugin": "7.0.1",
     "node-fetch": "2.7.0",
-    "react-test-renderer": "16.14.0",
+    "react-test-renderer": "17.0.2",
     "redux-saga-test-plan": "4.0.6",
     "serve": "13.0.4",
     "stylelint": "16.12.0",
