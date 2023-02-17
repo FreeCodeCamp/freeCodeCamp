@@ -687,7 +687,7 @@ const Editor = (props: EditorProps): JSX.Element => {
     domNode.style.width = `${getEditorContentWidth(editor)}px`;
 
     // We have to wait for the viewZone to finish rendering before adjusting the
-    // position of the content widget (i.e. trigger it via onDomNodeTop). If
+    // position of the layout widget (i.e. trigger it via onDomNodeTop). If
     // not the editor may report the wrong value for position of the lines.
     const viewZone = {
       afterLineNumber: getLineBeforeEditableRegion(),
@@ -695,13 +695,9 @@ const Editor = (props: EditorProps): JSX.Element => {
       domNode: document.createElement('div'),
       // This is called when the editor dimensions change and AFTER the
       // text in the editor has shifted.
-      onDomNodeTop: () => {
-        // The return value for getTopLineNumber includes the height of
-        // the content widget so we need to remove it.
-        dataRef.current.descriptionZoneTop =
-          editor.getTopForLineNumber(getLineBeforeEditableRegion() + 1) -
-          domNode.offsetHeight;
-        dataRef.current.descriptionWidget &&
+      onDomNodeTop: (top: number) => {
+        dataRef.current.descriptionZoneTop = top;
+        if (dataRef.current.descriptionWidget)
           editor.layoutOverlayWidget(dataRef.current.descriptionWidget);
       }
     };
@@ -924,6 +920,7 @@ const Editor = (props: EditorProps): JSX.Element => {
           monaco.editor.TrackedRangeStickiness.AlwaysGrowsWhenTypingAtEdges
       }
     };
+
     return model.deltaDecorations([], [lineDecoration]);
   }
 
