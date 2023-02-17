@@ -129,7 +129,7 @@ interface EditorProperties {
   outputZoneTop: number;
   outputZoneId: string;
   descriptionNode?: HTMLDivElement;
-  descriptionWidget?: editor.IContentWidget;
+  descriptionWidget?: editor.IOverlayWidget;
   outputWidget?: editor.IOverlayWidget;
 }
 
@@ -702,7 +702,7 @@ const Editor = (props: EditorProps): JSX.Element => {
           editor.getTopForLineNumber(getLineBeforeEditableRegion() + 1) -
           domNode.offsetHeight;
         dataRef.current.descriptionWidget &&
-          editor.layoutContentWidget(dataRef.current.descriptionWidget);
+          editor.layoutOverlayWidget(dataRef.current.descriptionWidget);
       }
     };
 
@@ -1057,19 +1057,11 @@ const Editor = (props: EditorProps): JSX.Element => {
       // itself.
       return null;
     };
-    // Only the description content widget uses this method but it
-    // is harmless to pass it to the overlay widget.
-    const afterRender = () => {
-      if (getTop) {
-        domNode.style.left = '0';
-      }
-      domNode.style.visibility = 'visible';
-    };
+
     return {
       getId,
       getDomNode,
-      getPosition,
-      afterRender
+      getPosition
     };
   };
 
@@ -1088,7 +1080,7 @@ const Editor = (props: EditorProps): JSX.Element => {
       // this order (add widget, change zone) is necessary, since the zone
       // relies on the domnode being in the DOM to calculate its height - that
       // doesn't happen until the widget is added.
-      editor.addContentWidget(dataRef.current.descriptionWidget);
+      editor.addOverlayWidget(dataRef.current.descriptionWidget);
       editor.changeViewZones(descriptionZoneCallback);
       // Now that the description zone is in place, the browser knows its height
       // and we can use that to calculate the top of the output zone.  If we do
@@ -1110,7 +1102,7 @@ const Editor = (props: EditorProps): JSX.Element => {
 
     editor.onDidScrollChange(() => {
       if (dataRef.current.descriptionWidget)
-        editor.layoutContentWidget(dataRef.current.descriptionWidget);
+        editor.layoutOverlayWidget(dataRef.current.descriptionWidget);
       if (dataRef.current.outputWidget)
         editor.layoutOverlayWidget(dataRef.current.outputWidget);
     });
