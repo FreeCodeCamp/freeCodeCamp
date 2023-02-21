@@ -129,7 +129,7 @@ interface EditorProperties {
   outputZoneTop: number;
   outputZoneId: string;
   descriptionNode?: HTMLDivElement;
-  descriptionWidget?: editor.IOverlayWidget;
+  descriptionWidget?: editor.IContentWidget;
   outputWidget?: editor.IOverlayWidget;
 }
 
@@ -685,6 +685,8 @@ const Editor = (props: EditorProps): JSX.Element => {
     // make sure the overlayWidget has resized before using it to set the height
 
     domNode.style.width = `${getEditorContentWidth(editor)}px`;
+    domNode.style.display = 'block';
+    domNode.style.visibility = 'visible';
 
     // We have to wait for the viewZone to finish rendering before adjusting the
     // position of the layout widget (i.e. trigger it via onDomNodeTop). If
@@ -695,10 +697,10 @@ const Editor = (props: EditorProps): JSX.Element => {
       domNode: document.createElement('div'),
       // This is called when the editor dimensions change and AFTER the
       // text in the editor has shifted.
-      onDomNodeTop: (top: number) => {
-        dataRef.current.descriptionZoneTop = top;
-        if (dataRef.current.descriptionWidget)
-          editor.layoutOverlayWidget(dataRef.current.descriptionWidget);
+      onDomNodeTop: () => {
+        dataRef.current.descriptionZoneTop =
+          editor.getTopForLineNumber(getLineBeforeEditableRegion() + 1) -
+          domNode.offsetHeight;
       }
     };
 
@@ -1055,10 +1057,19 @@ const Editor = (props: EditorProps): JSX.Element => {
       return null;
     };
 
+    const afterRender = () => {
+      if (getTop) {
+        domNode.style.left = '0';
+        domNode.style.display = 'block';
+        domNode.style.visibility = 'visible';
+      }
+    };
+
     return {
       getId,
       getDomNode,
-      getPosition
+      getPosition,
+      afterRender
     };
   };
 
@@ -1077,7 +1088,7 @@ const Editor = (props: EditorProps): JSX.Element => {
       // this order (add widget, change zone) is necessary, since the zone
       // relies on the domnode being in the DOM to calculate its height - that
       // doesn't happen until the widget is added.
-      editor.addOverlayWidget(dataRef.current.descriptionWidget);
+      editor.addContentWidget(dataRef.current.descriptionWidget);
       editor.changeViewZones(descriptionZoneCallback);
       // Now that the description zone is in place, the browser knows its height
       // and we can use that to calculate the top of the output zone.  If we do
@@ -1099,7 +1110,7 @@ const Editor = (props: EditorProps): JSX.Element => {
 
     editor.onDidScrollChange(() => {
       if (dataRef.current.descriptionWidget)
-        editor.layoutOverlayWidget(dataRef.current.descriptionWidget);
+        editor.layoutContentWidget(dataRef.current.descriptionWidget);
       if (dataRef.current.outputWidget)
         editor.layoutOverlayWidget(dataRef.current.outputWidget);
     });
