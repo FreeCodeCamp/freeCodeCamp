@@ -70,6 +70,7 @@
           "./api/tsconfig.json",
           "./shared/tsconfig.json",
           "./tools/client-plugins/browser-scripts/tsconfig.json",
+          "./tools/screenshot-service/tsconfig.json",
           "./e2e/tsconfig.json"
         ]
       },
