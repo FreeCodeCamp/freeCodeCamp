@@ -50,6 +50,7 @@ const envToLogger = {
 const start = async () => {
   const fastify = await build({
     logger: envToLogger[FREECODECAMP_NODE_ENV] ?? true,
+    bodyLimit: 1024 * 1024 * 100,
     genReqId: () => randomBytes(8).toString('hex'),
     disableRequestLogging: true
   });

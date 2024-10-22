@@ -4,6 +4,7 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "1.1.6",
+    "@types/express": "^5.0.0",
     "@types/multer": "1.4.11",
     "@types/uuid": "^10.0.0"
   },
@@ -12,7 +13,6 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.632.0",
-    "aws-sdk": "2.1675.0",
     "express": "5.0.0-beta.3",
     "uuid": "^10.0.0"
   }

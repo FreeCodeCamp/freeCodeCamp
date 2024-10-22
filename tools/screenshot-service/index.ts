@@ -1,55 +1,66 @@
+import {
+  PutObjectCommand,
+  S3Client,
+  type PutObjectCommandInput,
+  type PutObjectCommandOutput
+} from '@aws-sdk/client-s3';
 import express, { type Request, type Response } from 'express';
-import AWS from 'aws-sdk';
-import { v7 as uuidv7 } from 'uuid';
+
+interface ImageUploadRequest {
+  images: string[];
+  examAttemptId: string;
+}
 
 const app = express();
 
 // Parse JSON bodies (in case images are sent as Base64 strings)
-app.use(express.json({ limit: '3mb' }));
+app.use(express.json({ limit: '100mb' }));
 
 // Configure S3
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? ''
+  }
 });
 
-const uploadToS3 = async (
-  buffer: Buffer,
-  mimetype: string
-): Promise<AWS.S3.ManagedUpload.SendData> => {
-  const params = {
+const uploadToS3 = (
+  image: string,
+  examAttemptId: string
+): Promise<PutObjectCommandOutput> => {
+  const params: PutObjectCommandInput = {
     Bucket: process.env.S3_BUCKET_NAME as string,
-    Key: `${uuidv7()}`,
-    Body: buffer,
-    ContentType: mimetype
+    Key: `${examAttemptId}/${Date.now()}`,
+    Body: Buffer.from(image, 'base64'),
+    ContentType: 'image/jpeg'
   };
 
-  return s3.upload(params).promise();
+  return s3.send(new PutObjectCommand(params));
 };
 
 // Route to handle image uploads from another backend
 app.post(
   '/upload',
-  express.raw({ type: 'image/*', limit: '10mb' }),
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async (req: Request, res: Response) => {
+  async (req: Request<object, object, ImageUploadRequest>, res: Response) => {
     try {
-      const buffer = assertContentIsBuffer(req.body);
-      const data = await uploadToS3(buffer, req.get('Content-Type') as string);
-      res.status(200).json({ data });
+      for (const image of req.body.images) {
+        await uploadToS3(image, req.body.examAttemptId);
+      }
+      res.status(200).json({ message: 'Image uploaded successfully' });
     } catch (err) {
+      console.error('Error uploading image:', err);
       res.status(500).json({ error: (err as Error).message });
     }
   }
 );
 
-function assertContentIsBuffer(content: unknown): Buffer {
-  if (!Buffer.isBuffer(content)) {
-    throw new Error('Content must be a Buffer');
-  }
-  return content;
-}
+// function _assertContentIsBuffer(content: unknown): Buffer {
+//   if (!Buffer.isBuffer(content)) {
+//     throw new Error('Content must be a Buffer');
+//   }
+//   return content;
+// }
 
 const port = process.env.PORT || 3003;
 app.listen(port, () => {

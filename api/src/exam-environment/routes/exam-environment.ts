@@ -544,10 +544,17 @@ async function postExamAttemptHandler(
  */
 async function postScreenshotHandler(
   this: FastifyInstance,
-  _req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
+  req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
   reply: FastifyReply
 ) {
-  return reply.code(418);
+  void reply.code(200).send();
+  await fetch('http://localhost:3003/upload', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)
+  });
 }
 
 async function getExams(
