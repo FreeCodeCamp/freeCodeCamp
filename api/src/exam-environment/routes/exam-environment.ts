@@ -548,6 +548,35 @@ async function postScreenshotHandler(
   req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
   reply: FastifyReply
 ) {
+  const user = req.user!;
+  const currAttemptId = req.body.examAttemptId;
+  const maybeAttempt = await mapErr(
+    this.prisma.envExamAttempt.findMany({
+      where: {
+        userId: user.id,
+        id: currAttemptId
+      }
+    })
+  );
+
+  if (maybeAttempt.hasError) {
+    void reply.code(500);
+    return reply.send(
+      ERRORS.FCC_ERR_EXAM_ENVIRONMENT(JSON.stringify(maybeAttempt.error))
+    );
+  }
+
+  const attempt = maybeAttempt.data;
+
+  if (attempt.length === 0) {
+    void reply.code(404);
+    return reply.send(
+      ERRORS.FCC_ERR_EXAM_ENVIRONMENT_EXAM_ATTEMPT(
+        `No attempts found for user '${user.id}' with attempt id '${currAttemptId}'.`
+      )
+    );
+  }
+
   const imgBinary = Buffer.from(req.body.image, 'base64');
 
   // Verify image is JPG using magic number
