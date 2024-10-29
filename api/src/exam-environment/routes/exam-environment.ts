@@ -548,7 +548,18 @@ async function postScreenshotHandler(
   req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
   reply: FastifyReply
 ) {
+  const imgBinary = Buffer.from(req.body.image, 'base64');
+
+  // Verify image is JPG using magic number
+  if (imgBinary[0] !== 0xff || imgBinary[1] !== 0xd8 || imgBinary[2] !== 0xff) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT('Invalid image format.')
+    );
+  }
+
   void reply.code(200).send();
+
   await fetch('http://localhost:3003/upload', {
     method: 'POST',
     headers: {
