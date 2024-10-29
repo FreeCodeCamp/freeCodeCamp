@@ -7,14 +7,14 @@ import {
 import express, { type Request, type Response } from 'express';
 
 interface ImageUploadRequest {
-  images: string[];
+  image: string;
   examAttemptId: string;
 }
 
 const app = express();
 
 // Parse JSON bodies (in case images are sent as Base64 strings)
-app.use(express.json({ limit: '100mb' }));
+app.use(express.json({ limit: '5mb' }));
 
 // Configure S3
 const s3 = new S3Client({
@@ -44,9 +44,7 @@ app.post(
   '/upload',
   async (req: Request<object, object, ImageUploadRequest>, res: Response) => {
     try {
-      for (const image of req.body.images) {
-        await uploadToS3(image, req.body.examAttemptId);
-      }
+      await uploadToS3(req.body.image, req.body.examAttemptId);
       res.status(200).json({ message: 'Image uploaded successfully' });
     } catch (err) {
       console.error('Error uploading image:', err);

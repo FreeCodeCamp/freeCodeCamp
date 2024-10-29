@@ -3,7 +3,7 @@ import { STANDARD_ERROR } from '../utils/errors';
 
 export const examEnvironmentPostScreenshot = {
   body: Type.Object({
-    images: Type.Array(Type.String()),
+    image: Type.String(),
     examAttemptId: Type.String()
   }),
   headers: Type.Object({

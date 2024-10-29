@@ -48,7 +48,7 @@ export const examEnvironmentValidatedTokenRoutes: FastifyPluginCallbackTypebox =
       '/exam-environment/screenshot',
       {
         schema: schemas.examEnvironmentPostScreenshot,
-        bodyLimit: 1024 * 1024 * 100 // 100MiB
+        bodyLimit: 1024 * 1024 * 5 // 5MiB
       },
       postScreenshotHandler
     );
