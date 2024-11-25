@@ -1,5 +1,6 @@
 /* eslint-disable jsdoc/require-returns, jsdoc/require-param */
 import { type FastifyPluginCallbackTypebox } from '@fastify/type-provider-typebox';
+import fastifyMultipart from '@fastify/multipart';
 import { PrismaClientValidationError } from '@prisma/client/runtime/library';
 import { type FastifyInstance, type FastifyReply } from 'fastify';
 import jwt from 'jsonwebtoken';
@@ -44,16 +45,31 @@ export const examEnvironmentValidatedTokenRoutes: FastifyPluginCallbackTypebox =
       },
       postExamAttemptHandler
     );
-    fastify.post(
-      '/exam-environment/screenshot',
-      {
-        schema: schemas.examEnvironmentPostScreenshot,
-        bodyLimit: 1024 * 1024 * 5 // 5MiB
-      },
-      postScreenshotHandler
-    );
     done();
   };
+
+/**
+ * Wrapper for endpoints related to the exam environment desktop app.
+ *
+ * Requires multipart form data to be supported.
+ */
+export const examEnvironmentMultipartRoutes: FastifyPluginCallbackTypebox = (
+  fastify,
+  _options,
+  done
+) => {
+  void fastify.register(fastifyMultipart);
+
+  fastify.post(
+    '/exam-environment/screenshot',
+    {
+      schema: schemas.examEnvironmentPostScreenshot
+      // bodyLimit: 1024 * 1024 * 5 // 5MiB
+    },
+    postScreenshotHandler
+  );
+  done();
+};
 
 /**
  * Wrapper for endpoints related to the exam environment desktop app.
@@ -549,12 +565,19 @@ async function postScreenshotHandler(
   reply: FastifyReply
 ) {
   const user = req.user!;
-  const currAttemptId = req.body.examAttemptId;
+  const imgData = await req.file();
+
+  if (!imgData) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT('No image provided.')
+    );
+  }
+
   const maybeAttempt = await mapErr(
     this.prisma.envExamAttempt.findMany({
       where: {
-        userId: user.id,
-        id: currAttemptId
+        userId: user.id
       }
     })
   );
@@ -572,12 +595,12 @@ async function postScreenshotHandler(
     void reply.code(404);
     return reply.send(
       ERRORS.FCC_ERR_EXAM_ENVIRONMENT_EXAM_ATTEMPT(
-        `No attempts found for user '${user.id}' with attempt id '${currAttemptId}'.`
+        `No exam attempts found for user '${user.id}'.`
       )
     );
   }
 
-  const imgBinary = Buffer.from(req.body.image, 'base64');
+  const imgBinary = await imgData.toBuffer();
 
   // Verify image is JPG using magic number
   if (imgBinary[0] !== 0xff || imgBinary[1] !== 0xd8 || imgBinary[2] !== 0xff) {
@@ -589,12 +612,17 @@ async function postScreenshotHandler(
 
   void reply.code(200).send();
 
+  const uploadData = {
+    image: imgBinary.toString('base64'),
+    examAttemptId: attempt[0]?.id
+  };
+
   await fetch('http://localhost:3003/upload', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(req.body)
+    body: JSON.stringify(uploadData)
   });
 }
 
