@@ -53,13 +53,6 @@ app.post(
   }
 );
 
-// function _assertContentIsBuffer(content: unknown): Buffer {
-//   if (!Buffer.isBuffer(content)) {
-//     throw new Error('Content must be a Buffer');
-//   }
-//   return content;
-// }
-
 const port = process.env.PORT || 3003;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
