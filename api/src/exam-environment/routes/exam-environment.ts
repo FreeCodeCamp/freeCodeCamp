@@ -564,6 +564,17 @@ async function postScreenshotHandler(
   req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
   reply: FastifyReply
 ) {
+  const isMultipart = req.isMultipart();
+
+  if (!isMultipart) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT(
+        'Request is not multipart form data.'
+      )
+    );
+  }
+
   const user = req.user!;
   const imgData = await req.file();
 
