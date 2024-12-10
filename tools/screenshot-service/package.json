@@ -11,7 +11,6 @@
     "express": "5.0.0-beta.3"
   },
   "scripts": {
-    "start": "node index.js",
     "build": "tsc",
     "dev": "nodemon index.ts"
   }

@@ -6,7 +6,8 @@
     "allowJs": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "../../"
   },
   "include": ["**/*.ts"]
 }

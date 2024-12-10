@@ -1,33 +1,47 @@
-FROM oven/bun:1.1.24 AS base
-WORKDIR /usr/src/app
-
+# Define project root argument
 ARG PROJECT_DIR=tools/screenshot-service
 
-# install dependencies into temp directory
-# this will cache them and speed up future builds
-FROM base AS install
-RUN mkdir -p /temp/dev
-COPY $PROJECT_DIR/package.json $PROJECT_DIR/bun.lockb /temp/dev/
-RUN cd /temp/dev && bun install --frozen-lockfile
+# Build the app
+FROM node:20-alpine AS builder
+ARG PROJECT_DIR
 
-# install with --production (exclude devDependencies)
-RUN mkdir -p /temp/prod
-COPY $PROJECT_DIR/package.json $PROJECT_DIR/bun.lockb /temp/prod/
-RUN cd /temp/prod && bun install --frozen-lockfile --production
+RUN npm i -g pnpm@9
+USER node
+WORKDIR /home/node/build
 
-# copy node_modules from temp directory
-# then copy all (non-ignored) project files into the image
-FROM base AS prerelease
-COPY --from=install /temp/dev/node_modules node_modules
-COPY $PROJECT_DIR .
+COPY --chown=node:node *.* .
+COPY --chown=node:node ${PROJECT_DIR} ${PROJECT_DIR}
 
-# copy production dependencies and source code into final image
-FROM base AS release
-COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/index.ts .
-COPY --from=prerelease /usr/src/app/package.json .
+RUN pnpm install --frozen-lockfile --ignore-scripts -F=./${PROJECT_DIR}
 
-# run the app
-USER bun
-EXPOSE 3003/tcp
-ENTRYPOINT [ "bun", "run", "index.ts" ]
+RUN pnpm -F=./${PROJECT_DIR} build
+
+# Install production dependencies
+FROM node:20-alpine AS deps
+ARG PROJECT_DIR
+
+RUN npm i -g pnpm@9
+USER node
+WORKDIR /home/node/build
+
+COPY --chown=node:node pnpm*.yaml .
+COPY --chown=node:node ${PROJECT_DIR} ${PROJECT_DIR}
+
+RUN pnpm install --prod --ignore-scripts --frozen-lockfile -F=./${PROJECT_DIR}
+
+# App runner instance
+FROM node:20-alpine AS runner
+ARG PROJECT_DIR
+
+USER node
+WORKDIR /home/node/fcc
+
+# Copy the built app
+COPY --from=builder --chown=node:node /home/node/build/${PROJECT_DIR}/dist ./
+
+# Copy the production dependencies
+COPY --from=deps --chown=node:node /home/node/build/node_modules/ node_modules/
+COPY --from=deps --chown=node:node /home/node/build/${PROJECT_DIR}/node_modules ${PROJECT_DIR}/node_modules/
+
+# Run the app
+CMD [ "node", "./tools/screenshot-service/index.js" ]
