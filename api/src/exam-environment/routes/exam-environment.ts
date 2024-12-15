@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 
 import * as schemas from '../schemas';
 import { mapErr, syncMapErr, UpdateReqType } from '../../utils';
-import { JWT_SECRET } from '../../utils/env';
+import { JWT_SECRET, SCREENSHOT_SERVICE_LOCATION } from '../../utils/env';
 import {
   checkPrerequisites,
   constructUserExam,
@@ -628,7 +628,7 @@ async function postScreenshotHandler(
     examAttemptId: attempt[0]?.id
   };
 
-  await fetch('http://localhost:3003/upload', {
+  await fetch(`${SCREENSHOT_SERVICE_LOCATION}/upload`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
