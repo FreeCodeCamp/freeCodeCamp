@@ -2,6 +2,7 @@ import { Static } from '@fastify/type-provider-typebox';
 import jwt from 'jsonwebtoken';
 
 import {
+  createFetchMock,
   createSuperRequest,
   defaultUserId,
   devLogin,
@@ -562,7 +563,98 @@ describe('/exam-environment/', () => {
       });
     });
 
-    xdescribe('POST /exam-environment/screenshot', () => {});
+    describe('POST /exam-environment/screenshot', () => {
+      afterEach(async () => {
+        await fastifyTestInstance.prisma.envExamAttempt.deleteMany();
+      });
+
+      it('should return 400 if request is not multipart form data', async () => {
+        const res = await superPost('/exam-environment/screenshot').set(
+          'exam-environment-authorization-token',
+          examEnvironmentAuthorizationToken
+        );
+
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual({
+          code: 'FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT',
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          message: expect.any(String)
+        });
+      });
+
+      it('should return 400 if image is missing', async () => {
+        const res = await superPost('/exam-environment/screenshot')
+          .set(
+            'exam-environment-authorization-token',
+            examEnvironmentAuthorizationToken
+          )
+          .attach('file', '');
+
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual({
+          code: 'FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT',
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          message: expect.any(String)
+        });
+      });
+
+      it('should return 404 if there is no ongoing exam attempt', async () => {
+        const res = await superPost('/exam-environment/screenshot')
+          .set(
+            'exam-environment-authorization-token',
+            examEnvironmentAuthorizationToken
+          )
+          .attach('file', Buffer.from([]));
+
+        expect(res.status).toBe(404);
+        expect(res.body).toStrictEqual({
+          code: 'FCC_ERR_EXAM_ENVIRONMENT_EXAM_ATTEMPT',
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          message: expect.any(String)
+        });
+      });
+
+      it('should return 400 if image is of wrong format', async () => {
+        await fastifyTestInstance.prisma.envExamAttempt.create({
+          data: mock.examAttempt
+        });
+
+        const res = await superPost('/exam-environment/screenshot')
+          .set(
+            'exam-environment-authorization-token',
+            examEnvironmentAuthorizationToken
+          )
+          .attach('file', Buffer.from([]));
+
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual({
+          code: 'FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT',
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          message: expect.any(String)
+        });
+      });
+
+      it('should return 200 if request is valid and send image to screenshot upload service', async () => {
+        // Mock image upload service response
+        const imageUploadRes = createFetchMock({ ok: true });
+        jest.spyOn(globalThis, 'fetch').mockImplementation(imageUploadRes);
+
+        await fastifyTestInstance.prisma.envExamAttempt.create({
+          data: mock.examAttempt
+        });
+
+        const res = await superPost('/exam-environment/screenshot')
+          .set(
+            'exam-environment-authorization-token',
+            examEnvironmentAuthorizationToken
+          )
+          .attach('file', Buffer.from([0xff, 0xd8, 0xff, 0xff]));
+
+        expect(res.status).toBe(200);
+        expect(res.body).toStrictEqual({});
+        expect(globalThis.fetch).toHaveBeenCalled();
+      });
+    });
 
     describe('GET /exam-environment/exams', () => {
       it('should return 200', async () => {
