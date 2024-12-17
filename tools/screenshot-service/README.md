@@ -5,13 +5,13 @@
 To install dependencies:
 
 ```bash
-bun install
+pnpm install
 ```
 
 To run:
 
 ```bash
-bun run index.ts
+npm run dev
 ```
 
 ## Deployment
