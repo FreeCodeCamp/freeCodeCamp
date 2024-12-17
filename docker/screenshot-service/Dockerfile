@@ -43,5 +43,7 @@ COPY --from=builder --chown=node:node /home/node/build/${PROJECT_DIR}/dist ./
 COPY --from=deps --chown=node:node /home/node/build/node_modules/ node_modules/
 COPY --from=deps --chown=node:node /home/node/build/${PROJECT_DIR}/node_modules ${PROJECT_DIR}/node_modules/
 
+ENV PORT 3003
+
 # Run the app
 CMD [ "node", "./tools/screenshot-service/index.js" ]
