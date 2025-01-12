@@ -13,7 +13,7 @@ const pathPrefix = clientLocale === 'english' ? '' : '/' + clientLocale;
 
 module.exports = {
   flags: {
-    DEV_SSR: false
+    DEV_SSR: true
   },
   siteMetadata: {
     title: 'freeCodeCamp',
@@ -29,7 +29,6 @@ module.exports = {
         generateStatsFile: process.env.CI
       }
     },
-    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {

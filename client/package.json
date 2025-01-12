@@ -20,7 +20,7 @@
   "main": "none",
   "scripts": {
     "prebuild": "pnpm run common-setup && pnpm run build:scripts --env production",
-    "build": "NODE_OPTIONS=\"--max-old-space-size=7168\" gatsby build --prefix-paths",
+    "build": "NODE_OPTIONS=\"--max-old-space-size=7168\" gatsby build --prefix-paths --verbose",
     "build:scripts": "pnpm run -F=browser-scripts build",
     "clean": "gatsby clean",
     "common-setup": "pnpm -w run create:shared && pnpm run create:env && pnpm run create:trending && pnpm run create:search-placeholder",
@@ -28,7 +28,7 @@
     "create:trending": "ts-node ./tools/download-trending.ts",
     "create:search-placeholder": "ts-node ./tools/generate-search-placeholder",
     "predevelop": "pnpm run common-setup && pnpm run build:scripts --env development",
-    "develop": "NODE_OPTIONS=\"--max-old-space-size=7168\" gatsby develop --inspect=9230",
+    "develop": "NODE_OPTIONS=\"--max-old-space-size=12000\" gatsby develop --inspect=9230 --verbose",
     "lint": "ts-node ./i18n/schema-validation.ts",
     "serve": "gatsby serve -p 8000",
     "serve-ci": "serve -l 8000 -c serve.json public",
@@ -69,15 +69,14 @@
     "crypto-browserify": "3.12.0",
     "date-fns": "2.30.0",
     "final-form": "4.20.10",
-    "gatsby": "3.15.0",
-    "gatsby-cli": "3.15.0",
-    "gatsby-plugin-create-client-paths": "3.15.0",
-    "gatsby-plugin-manifest": "3.15.0",
+    "gatsby": "4.24.0",
+    "gatsby-cli": "4.24.0",
+    "gatsby-plugin-create-client-paths": "4.9.0",
+    "gatsby-plugin-manifest": "4.24.0",
     "gatsby-plugin-pnpm": "^1.2.10",
-    "gatsby-plugin-postcss": "4.15.0",
-    "gatsby-plugin-react-helmet": "4.15.0",
+    "gatsby-plugin-postcss": "5.25.0",
     "gatsby-plugin-remove-serviceworker": "1.0.0",
-    "gatsby-source-filesystem": "3.15.0",
+    "gatsby-source-filesystem": "4.25.0",
     "gatsby-transformer-remark": "5.25.1",
     "i18next": "22.5.1",
     "lodash": "4.17.21",
@@ -170,6 +169,6 @@
     "redux-saga-test-plan": "4.0.6",
     "serve": "13.0.4",
     "ts-node": "10.9.2",
-    "webpack": "5.90.3"
+    "webpack": "5.97.1"
   }
 }
