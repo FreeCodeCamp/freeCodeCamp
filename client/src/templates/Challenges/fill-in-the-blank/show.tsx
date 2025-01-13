@@ -138,7 +138,8 @@ const ShowFillInTheBlank = ({
     const newAnswersCorrect = userAnswers.map(
       (userAnswer, i) =>
         !!userAnswer &&
-        replaceAppleQuotes(userAnswer.trim()) === blankAnswers[i]
+        replaceAppleQuotes(userAnswer.trim()).toLowerCase() ===
+          blankAnswers[i].toLowerCase()
     );
     setAnswersCorrect(newAnswersCorrect);
     const hasWrongAnswer = newAnswersCorrect.some(a => a === false);
