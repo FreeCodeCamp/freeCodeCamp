@@ -23,19 +23,19 @@ than a simple minimum length algorithm.
 
 # --hints--
 
-wrap should be a function.
+`wrap` should be a function.
 
 ```js
 assert.equal(typeof wrap, 'function');
 ```
 
-wrap should return a string.
+`wrap` should return a string.
 
 ```js
 assert.equal(typeof wrap('abc', 10), 'string');
 ```
 
-wrap(80) should return 4 lines.
+`wrap(text, 80)` should return 4 lines.
 
 ```js
 assert(wrapped80.split('\n').length === 4);
@@ -47,7 +47,7 @@ Your `wrap` function should return our expected text.
 assert.equal(wrapped80.split('\n')[0], firstRow80);
 ```
 
-wrap(42) should return 7 lines.
+`wrap(text, 42)` should return 7 lines.
 
 ```js
 assert(wrapped42.split('\n').length === 7);
@@ -64,11 +64,7 @@ assert.equal(wrapped42.split('\n')[0], firstRow42);
 ## --after-user-code--
 
 ```js
-const text =
-`Wrap text using a more sophisticated algorithm such as the Knuth and Plass TeX algorithm.
-If your language provides this, you get easy extra credit,
-but you ''must reference documentation'' indicating that the algorithm
-is something better than a simple minimum length algorithm.`;
+const text = "Wrap text using a more sophisticated algorithm such as the Knuth and Plass TeX algorithm. If your language provides this, you get easy extra credit, but you ''must reference documentation'' indicating that the algorithm is something better than a simple minimum length algorithm.";
 
 const wrapped80 = wrap(text, 80);
 const wrapped42 = wrap(text, 42);
