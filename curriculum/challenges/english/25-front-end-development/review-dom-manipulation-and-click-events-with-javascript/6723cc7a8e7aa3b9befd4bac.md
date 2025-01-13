@@ -31,7 +31,7 @@ Review the concepts below to prepare for the upcoming quiz.
 const container = document.getElementById("container");
 ```
 
-- **`querySelector()` Method**: This method is used to get the first element in the HTML document that matches the CSS selector passed as argument.
+- **`querySelector()` Method**: This method is used to get the first element in the HTML document that matches the CSS selector passed as an argument.
 
 ```html
 <section class="section"></section>
@@ -200,14 +200,14 @@ para.addEventListener("mouseover", () => {
 
 ## Working with `style` and `classList`
 
-- **`Element.style` Property**: This property is a read only property that represents the inline style of an element. You can use this property to get or set the style of an element.
+- **`Element.style` Property**: This property is a read-only property that represents the inline style of an element. You can use this property to get or set the style of an element.
 
 ```js
 const paraEl = document.getElementById("para");
 paraEl.style.color = "red";
 ```
 
-- **`Element.classList` Property**: This property is a read only property that can be used to add, remove, or toggle classes on an element.
+- **`Element.classList` Property**: This property is a read-only property that can be used to add, remove, or toggle classes on an element.
 
 ```js
 // Example adding a class
@@ -286,7 +286,7 @@ const animation = square.animate(
 
 ## The Canvas API
 
-- **Definition**: The Canvas API is a powerful tool that lets you and manipulate graphics right inside your JavaScript file. To work with the Canvas API, you first need to provide a `<canvas>` element in HTML. This element acts as a drawing surface you can manipulate with the instance methods and properties of the interfaces in the Canvas API. This API has interfaces like `HTMLCanvasElement`, `CanvasRenderingContext2D`, `CanvasGradient`, `CanvasPattern`, and `TextMetrics` which contains methods and properties you can use to create graphics in your JavaScript file.
+- **Definition**: The Canvas API is a powerful tool that lets you and manipulate graphics right inside your JavaScript file. To work with the Canvas API, you first need to provide a `<canvas>` element in HTML. This element acts as a drawing surface you can manipulate with the instance methods and properties of the interfaces in the Canvas API. This API has interfaces like `HTMLCanvasElement`, `CanvasRenderingContext2D`, `CanvasGradient`, `CanvasPattern`, and `TextMetrics` which contain methods and properties you can use to create graphics in your JavaScript file.
 
 ```html
 <canvas id="my-canvas" width="400" height="400"></canvas>
