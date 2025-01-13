@@ -1842,7 +1842,7 @@
       "workshop-blog-page": {
         "title": "Створіть сторінку блогу про котів",
         "intro": [
-          "У цьому практичному занятті ви дізнаєтесь, як створити сторінку блогу лише на HTML, використовуючи семантичні елементи, серед яких <code>main</code>, <code>nav</code>, <code>article</code> та <code>footer</code>."
+          "У цьому практичному занятті ви створите сторінку блогу лише на HTML, використовуючи семантичні елементи, серед яких <code>main</code>, <code>nav</code>, <code>article</code> та <code>footer</code>."
         ]
       },
       "lab-event-hub": {
@@ -1893,7 +1893,7 @@
       "workshop-final-exams-table": {
         "title": "Створіть таблицю з кінцевими екзаменами",
         "intro": [
-          "In this workshop, you will practice working with HTML tables by building a table of final exams."
+          "У цьому практичному занятті ви дізнаєтесь, як працювати з HTML-таблицями, створивши таблицю кінцевих екзаменів."
         ]
       },
       "lab-book-catalog-table": {

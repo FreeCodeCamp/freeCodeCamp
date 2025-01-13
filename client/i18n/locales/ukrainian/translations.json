@@ -428,6 +428,7 @@
     "questions": "Запитання",
     "answered-mcq": "Ви не відповіли на всі запитання та/або допустились помилок.",
     "explanation": "Пояснення",
+    "transcript": "Прочитати текст цього відео",
     "solution-link": "Посилання на розв’язок",
     "source-code-link": "Посилання на вихідний код",
     "ms-link": "Посилання Microsoft",
@@ -528,8 +529,8 @@
     "if-help-university": "Ми вже зробили багато роботи. Підтримайте довгий шлях нашої благодійної організації.",
     "preview-external-window": "Попередній перегляд знаходиться у зовнішньому вікні.",
     "fill-in-the-blank": {
-      "heading": "Fill in the blank",
-      "blank": "blank"
+      "heading": "Заповніть прогалини",
+      "blank": "прогалина"
     },
     "quiz": {
       "correct-answer": "Правильно!",
@@ -709,7 +710,7 @@
     "support-benefits-2": "Ви отримаєте значок донора",
     "support-benefits-3": "Зображення профілю міститиме золоте гало навколо",
     "support-benefits-4": "Ви отримаєте доступ до спеціальних каналів підтримки на дискорді: <0>приєднайтесь до нашого дискорду</0> та використайте команду <1>/supporter</1>, щоб отримати доступ",
-    "support-benefits-5": "And more benefits to come soon",
+    "support-benefits-5": "Та багато іншого зовсім скоро",
     "exclusive-features": "Ось список ваших переваг як донора:",
     "current-initiatives-title": "Поточні ініціативи:",
     "your-donation-helps-followings": "Завдяки вашим донатам можливі такі ініціативи:",
@@ -718,10 +719,10 @@
     "current-initiatives-3": "Переклад навчальної програми та підручників на 32 мови",
     "current-initiatives-4": "Створення безоплатного акредитованого ступеня бакалавра з комп’ютерних наук",
     "community-achivements-title": "Цьогорічні досягнення нашої спільноти:",
-    "community-achivements-1": "Published <0>193</0> full-length courses on YouTube.",
-    "community-achivements-2": "Published <0>850</0> text-based coding tutorials and <0>5</0> free books through freeCodeCamp Press.",
-    "community-achivements-3": "Merged <0>2,455</0> code contributions into our open source repositories on GitHub",
-    "community-achivements-4": "Translated <0>1.5</0> million words to make our curriculum and tutorials more accessible to speakers of many world languages",
+    "community-achivements-1": "Опубліковано <0>193</0> курси на YouTube.",
+    "community-achivements-2": "Опубліковано <0>850</0> текстових посібників та <0>5</0> безоплатних підручників на freeCodeCamp Press.",
+    "community-achivements-3": "Додано <0>2 455</0> внесків в наші репозиторії з відкритим кодом на GitHub.",
+    "community-achivements-4": "Перекладено <0>1,5</0> мільйона слів, щоб зробити навчальну програму та підручники доступними багатьма мовами світу.",
     "as-you-see": "Як бачите, ми багато чого робимо. Тому можете бути певні, що ваші донати будуть використані правильно.",
     "get-benefits": "Отримайте переваги та знання того, що ви допомагаєте нашій організації покращити освіту. Станьте донором сьогодні.",
     "modal-benefits-title": "Підтримайте нас",
