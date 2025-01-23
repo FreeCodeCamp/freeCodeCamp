@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import type { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
-import { useLocation, navigate as reachNavigate } from '@reach/router';
+import { useLocation, navigate as reachNavigate } from '@gatsbyjs/reach-router';
 import {
   Container,
   Col,
