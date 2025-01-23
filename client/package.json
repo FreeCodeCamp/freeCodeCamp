@@ -142,7 +142,7 @@
     "@types/lodash-es": "^4.17.6",
     "@types/node-fetch": "2",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "16.14.56",
+    "@types/react": "17.0.83",
     "@types/react-dom": "17.0.19",
     "@types/react-gtm-module": "2.0.3",
     "@types/react-helmet": "6.1.11",
