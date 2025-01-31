@@ -415,12 +415,6 @@
             { "dashedName": "workshop-storytelling-app" },
             { "dashedName": "lab-favorite-icon-toggler" },
             {
-              "dashedName": "review-dom-manipulation-and-click-events-with-javascript"
-            },
-            {
-              "dashedName": "quiz-dom-manipulation-and-click-event-with-javascript"
-            },
-            {
               "dashedName": "lecture-understanding-the-event-object-and-event-delegation"
             },
             { "dashedName": "workshop-music-instrument-filter" },
@@ -429,8 +423,12 @@
             { "dashedName": "workshop-rps-game" },
             { "dashedName": "lab-palindrome-checker" },
             { "dashedName": "lab-football-team-cards" },
-            { "dashedName": "review-javascript-events" },
-            { "dashedName": "quiz-javascript-events" }
+            {
+              "dashedName": "review-dom-manipulation-and-click-events-with-javascript"
+            },
+            {
+              "dashedName": "quiz-dom-manipulation-and-click-event-with-javascript"
+            }
           ]
         },
         {

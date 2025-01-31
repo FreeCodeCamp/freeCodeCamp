@@ -194,6 +194,42 @@ para.addEventListener("mouseover", () => {
 <button onclick="alert('Hello World!')">Show alert</button>
 ```
 
+## The Change Event
+
+- **Definition**: The change event is a special event which is fired when the user modifies the value of certain input elements. Examples would include when a checkbox or a radio button is ticked. Or when the user makes a selection from something like a date picker or dropdown menu.
+
+```html
+<label>
+  Choose a programming language:
+  <select class="language" name="language">
+    <option value="">---Select One---</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="Python">Python</option>
+    <option value="C++">C++</option>
+  </select>
+</label>
+
+<p class="result"></p>
+```
+
+```js 
+const selectEl = document.querySelector(".language");
+const result = document.querySelector(".result");
+
+selectEl.addEventListener("change", (e) => {
+  result.textContent = `You enjoy programming in ${e.target.value}.`;
+});
+```
+
+## Event Bubbling
+
+- **Definition**: Event bubbling, or propagation, refers to how an event "bubbles up" to parent objects when triggered.
+- **`stopPropagation()` Method**: This method prevents further propagation for an event.
+
+## Event Delegation
+
+- **Definition**: Event delegation is the process of listening to events that have bubbled up to a parent, rather than handling them directly on the element that triggered them. 
+
 ## DOMContentLoaded
 
 - **Definition**: The `DOMContentLoaded` event is fired when everything in the HTML document has been loaded and parsed. If you have external stylesheets, or images, the `DOMContentLoaded` event will not wait for those to be loaded. It will only wait for the HTML to be loaded.

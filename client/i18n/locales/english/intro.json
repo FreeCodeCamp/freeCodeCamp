@@ -2959,19 +2959,6 @@
           "In this lab, you'll build a favorite icon toggler by utilizing JavaScript click events."
         ]
       },
-      "review-dom-manipulation-and-click-events-with-javascript": {
-        "title": "DOM Manipulation and Click Events with JavaScript Review",
-        "intro": [
-          "Before you're quizzed on the DOM, you should review what you've learned about it.",
-          "Open up this page to review concepts including how to work with the <code>DOM</code>, <code>Web API's</code>, the <code>addEventListener()</code> method and more."
-        ]
-      },
-      "quiz-dom-manipulation-and-click-event-with-javascript": {
-        "title": "DOM Manipulation and Click Events with JavaScript Quiz",
-        "intro": [
-          "Test your knowledge of DOM manipulation and click events in JavaScript with this quiz."
-        ]
-      },
       "lecture-understanding-the-event-object-and-event-delegation": {
         "title": "Understanding the Event Object and Event Delegation",
         "intro": [
@@ -3016,16 +3003,18 @@
           "In this lab, you'll use DOM manipulation, object destructuring, event handling, and data filtering to build a set of football team cards."
         ]
       },
-      "review-javascript-events": {
-        "title": "JavaScript Events Review",
+      "review-dom-manipulation-and-click-events-with-javascript": {
+        "title": "DOM Manipulation and Click Events with JavaScript Review",
         "intro": [
-          "Before you're quizzed on events, you should review what you've learned.",
-          "Open up this page to review concepts like change events, event bubbling, and event delegation."
+          "Before you're quizzed on the DOM, you should review what you've learned about it.",
+          "Open up this page to review concepts including how to work with the <code>DOM</code>, <code>Web API's</code>, the <code>addEventListener()</code> method, change events, event bubbling and more."
         ]
       },
-      "quiz-javascript-events": {
-        "title": "JavaScript Events Quiz",
-        "intro": ["Test your knowledge of JavaScript events with this quiz."]
+      "quiz-dom-manipulation-and-click-event-with-javascript": {
+        "title": "DOM Manipulation and Click Events with JavaScript Quiz",
+        "intro": [
+          "Test your knowledge of DOM manipulation and click events in JavaScript with this quiz."
+        ]
       },
       "lecture-debugging-techniques": {
         "title": "Debugging Techniques",
