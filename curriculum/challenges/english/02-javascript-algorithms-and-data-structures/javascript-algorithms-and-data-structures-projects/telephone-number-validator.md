@@ -192,6 +192,79 @@ assert(telephoneCheck('55 55-55-555-5') === false);
 assert(telephoneCheck('11 555-555-5555') === false);
 ```
 
+`telephoneCheck()`, when called with any valid number, should return `true`.
+
+```js
+
+function generatePhoneNumber(type) {
+  
+  let bit1 = "" 
+  let bit2 = "";
+  let bit3 = "";
+
+  for (let i = 0; i < 3; i++) {
+    bit1 += Math.floor(Math.random() * 7) + 2;
+    bit2 += Math.floor(Math.random() * 8) + 2;
+    bit3 += Math.floor(Math.random() * 10);
+  }
+
+  bit3 += Math.floor(Math.random() * 10);
+  
+  const patterns = [
+    `1 ${bit1}-${bit2}-${bit3}`,
+    `1 (${bit1})${bit2}-${bit3}`,
+    `1(${bit1})${bit2}-${bit3}`,
+    `1 ${bit1} ${bit2} ${bit3}`,
+    `${bit1}${bit2}${bit3}`,
+    `${bit1}-${bit2}-${bit3}`,
+    `(${bit1})${bit2}-${bit3}`
+  ];
+
+  return patterns[type - 1];
+}
+
+for (let i = 1; i <= 7; i++) {
+  let phoneNum = generatePhoneNumber(i);
+  assert.isTrue(telephoneCheck(phoneNum));
+}
+```
+
+When the `#user-input` element contains an invalid US number and the `#check-btn` element is clicked, the `#results-div` element should contain the text `"Invalid US number: "` followed by the number.
+
+```js
+
+function generateInvalidPhoneNumber(type) {
+  
+  let bit1 = "" 
+  let bit2 = "";
+  let bit3 = "";
+
+  for (let i = 0; i < 3; i++) {
+    bit1 += Math.floor(Math.random() * 10);
+    bit2 += Math.floor(Math.random() * 10);
+    bit3 += Math.floor(Math.random() * 10);
+  }
+
+  bit3 += Math.floor(Math.random() * 10);
+  
+  const patterns = [
+    `11 ${bit1}-${bit2}-${bit3}`,
+    `1 ${bit1})${bit2}-${bit3}`,
+    `1(${bit3})${bit3}-${bit3}`,
+    `1 ${bit1}#${bit2} ${bit3}`,
+    `${bit1}${bit2}${bit3}-`,
+    `$-{bit1}-${bit2}-${bit3}`,
+    `(${bit1}${bit2}-${bit3}`
+  ];
+
+  return patterns[type - 1];
+}
+
+const notPhoneNum = generateInvalidPhoneNumber(Math.floor(Math.random() * 7))
+assert.isFalse(telephoneCheck(notPhoneNum))
+```
+
+
 # --seed--
 
 ## --seed-contents--
