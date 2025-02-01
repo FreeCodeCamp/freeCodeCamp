@@ -1,12 +1,13 @@
 /* eslint-disable jsdoc/require-returns, jsdoc/require-param */
 import { type FastifyPluginCallbackTypebox } from '@fastify/type-provider-typebox';
+import fastifyMultipart from '@fastify/multipart';
 import { PrismaClientValidationError } from '@prisma/client/runtime/library';
 import { type FastifyInstance, type FastifyReply } from 'fastify';
 import jwt from 'jsonwebtoken';
 
 import * as schemas from '../schemas';
 import { mapErr, syncMapErr, UpdateReqType } from '../../utils';
-import { JWT_SECRET } from '../../utils/env';
+import { JWT_SECRET, SCREENSHOT_SERVICE_LOCATION } from '../../utils/env';
 import {
   checkPrerequisites,
   constructUserExam,
@@ -44,15 +45,31 @@ export const examEnvironmentValidatedTokenRoutes: FastifyPluginCallbackTypebox =
       },
       postExamAttemptHandler
     );
-    fastify.post(
-      '/exam-environment/screenshot',
-      {
-        schema: schemas.examEnvironmentPostScreenshot
-      },
-      postScreenshotHandler
-    );
     done();
   };
+
+/**
+ * Wrapper for endpoints related to the exam environment desktop app.
+ *
+ * Requires multipart form data to be supported.
+ */
+export const examEnvironmentMultipartRoutes: FastifyPluginCallbackTypebox = (
+  fastify,
+  _options,
+  done
+) => {
+  void fastify.register(fastifyMultipart);
+
+  fastify.post(
+    '/exam-environment/screenshot',
+    {
+      schema: schemas.examEnvironmentPostScreenshot
+      // bodyLimit: 1024 * 1024 * 5 // 5MiB
+    },
+    postScreenshotHandler
+  );
+  done();
+};
 
 /**
  * Wrapper for endpoints related to the exam environment desktop app.
@@ -544,10 +561,80 @@ async function postExamAttemptHandler(
  */
 async function postScreenshotHandler(
   this: FastifyInstance,
-  _req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
+  req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
   reply: FastifyReply
 ) {
-  return reply.code(418);
+  const isMultipart = req.isMultipart();
+
+  if (!isMultipart) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT(
+        'Request is not multipart form data.'
+      )
+    );
+  }
+
+  const user = req.user!;
+  const imgData = await req.file();
+
+  if (!imgData) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT('No image provided.')
+    );
+  }
+
+  const maybeAttempt = await mapErr(
+    this.prisma.envExamAttempt.findMany({
+      where: {
+        userId: user.id
+      }
+    })
+  );
+
+  if (maybeAttempt.hasError) {
+    void reply.code(500);
+    return reply.send(
+      ERRORS.FCC_ERR_EXAM_ENVIRONMENT(JSON.stringify(maybeAttempt.error))
+    );
+  }
+
+  const attempt = maybeAttempt.data;
+
+  if (attempt.length === 0) {
+    void reply.code(404);
+    return reply.send(
+      ERRORS.FCC_ERR_EXAM_ENVIRONMENT_EXAM_ATTEMPT(
+        `No exam attempts found for user '${user.id}'.`
+      )
+    );
+  }
+
+  const imgBinary = await imgData.toBuffer();
+
+  // Verify image is JPG using magic number
+  if (imgBinary[0] !== 0xff || imgBinary[1] !== 0xd8 || imgBinary[2] !== 0xff) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT('Invalid image format.')
+    );
+  }
+
+  void reply.code(200).send();
+
+  const uploadData = {
+    image: imgBinary.toString('base64'),
+    examAttemptId: attempt[0]?.id
+  };
+
+  await fetch(`${SCREENSHOT_SERVICE_LOCATION}/upload`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(uploadData)
+  });
 }
 
 async function getExams(

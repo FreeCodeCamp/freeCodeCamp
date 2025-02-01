@@ -1,0 +1,17 @@
+{
+  "name": "@freecodecamp/exam-screenshot-service",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.632.0",
+    "express": "5.0.0-beta.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon index.ts"
+  }
+}
