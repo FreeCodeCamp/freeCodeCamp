@@ -1,4 +1,6 @@
 .project-preview-modal-body {
   line-height: 0;
   padding: 0;
+  min-height: 70vh;
+  height: 70vh;
 }

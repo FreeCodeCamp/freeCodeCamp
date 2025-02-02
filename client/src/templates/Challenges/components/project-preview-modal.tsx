@@ -60,7 +60,7 @@ function ProjectPreviewModal({
       open={isOpen}
     >
       <Modal.Header closeButtonClassNames='close'>{previewTitle}</Modal.Header>
-      <Modal.Body>
+      <Modal.Body className='project-preview-modal-body'>
         <Preview
           previewId={projectPreviewId}
           previewMounted={() => projectPreviewMounted({ challengeData })}
