@@ -1,11 +1,12 @@
+/* eslint-disable filenames-simple/naming-convention */
+
 import { Router } from '@reach/router';
 import { withPrefix } from 'gatsby';
 import React from 'react';
 
-import ShowCertification from '../client-only-routes/show-certification';
-import RedirectHome from '../components/redirect-home';
-
-import './certification.css';
+import '../../certification.css';
+import ShowCertification from '../../../client-only-routes/show-certification';
+import RedirectHome from '../../../components/redirect-home';
 
 function Certification(): JSX.Element {
   return (
