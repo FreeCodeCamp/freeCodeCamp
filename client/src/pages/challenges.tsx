@@ -1,7 +1,7 @@
 // This exists purely to redirect legacy challenge paths to /learn that could
 // exist in the web (posts, url shares, etc).
 
-import { Router, RouteComponentProps } from '@reach/router';
+import { Router, RouteComponentProps } from '@gatsbyjs/reach-router';
 import { navigate, withPrefix } from 'gatsby';
 import React from 'react';
 

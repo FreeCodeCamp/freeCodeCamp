@@ -1,5 +1,5 @@
 import { navigate } from 'gatsby';
-import type { RouteComponentProps } from '@reach/router';
+import type { RouteComponentProps } from '@gatsbyjs/reach-router';
 
 const createRedirect =
   (to = '/'): ((_props: RouteComponentProps) => JSX.Element | null) =>

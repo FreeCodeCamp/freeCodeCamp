@@ -13,6 +13,12 @@
       "src": "https://unpkg.com/react-dom@16.4.0/umd/react-dom.production.min.js"
     },
     {
+      "src": "https://unpkg.com/react-dom@16.4.0/umd/react-dom-test-utils.production.min.js"
+    },
+    {
+      "src": "https://unpkg.com/react-dom@16.4.0/umd/react-dom-server.browser.production.min.js"
+    },
+    {
       "src": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"
     },
     {

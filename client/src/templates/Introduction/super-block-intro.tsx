@@ -1,4 +1,4 @@
-import { WindowLocation } from '@reach/router';
+import { WindowLocation } from '@gatsbyjs/reach-router';
 import { graphql } from 'gatsby';
 import { uniq, isEmpty, last } from 'lodash-es';
 import React, { useEffect, memo, useMemo } from 'react';

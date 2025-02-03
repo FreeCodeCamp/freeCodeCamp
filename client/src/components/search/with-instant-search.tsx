@@ -1,5 +1,5 @@
-import { Location } from '@reach/router';
-import type { WindowLocation } from '@reach/router';
+import { Location } from '@gatsbyjs/reach-router';
+import type { WindowLocation } from '@gatsbyjs/reach-router';
 import type { SearchOptions } from 'instantsearch.js';
 import algoliasearch from 'algoliasearch/lite';
 import React, { useEffect, useRef } from 'react';

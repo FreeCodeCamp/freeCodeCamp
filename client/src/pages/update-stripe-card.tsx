@@ -1,4 +1,4 @@
-import { useLocation } from '@reach/router';
+import { useLocation } from '@gatsbyjs/reach-router';
 
 import React, { type FormEvent, useEffect } from 'react';
 import Helmet from 'react-helmet';

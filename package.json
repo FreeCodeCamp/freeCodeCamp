@@ -54,7 +54,7 @@
     "lint": "NODE_OPTIONS=\"--max-old-space-size=7168\" npm-run-all create:shared -p lint:*",
     "lint:challenges": "cd ./curriculum && pnpm run lint",
     "lint:js": "eslint --cache --max-warnings 0 .",
-    "lint:ts": "tsc && tsc -p shared && tsc -p api",
+    "lint:ts": "tsc && tsc -p shared && tsc -p api && tsc -p client",
     "lint:prettier": "prettier --list-different .",
     "lint:css": "stylelint '**/*.css'",
     "reload:server": "pm2 reload api-server/ecosystem.config.js",
@@ -132,5 +132,13 @@
     "webpack-bundle-analyzer": "4.10.1",
     "yargs": "17.7.2"
   },
-  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react-scrollable-anchor>react": "17",
+        "react-scrollable-anchor>react-dom": "17"
+      }
+    }
+  }
 }
