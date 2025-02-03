@@ -6,8 +6,432 @@
   "superBlock": "b1-english-for-developers",
   "challengeOrder": [
     {
-      "id": "6660a03636891e5d6c1d75a8",
-      "title": "Dialogue 1: I'm Tom"
+      "id": "67828be909569821c4e0c666",
+      "title": "Dialogue 1: Choosing a Programming Language"
+    },
+    {
+      "id": "6784d0806e8ebc00832820cf",
+      "title": "Task 1"
+    },
+    {
+      "id": "67876442173eb3094261233a",
+      "title": "Task 2"
+    },
+    {
+      "id": "678766ada9f08515d38da1fa",
+      "title": "Task 3"
+    },
+    {
+      "id": "67876786972db81e08e7ebba",
+      "title": "Task 4"
+    },
+    {
+      "id": "67878200c2b78d332227efe7",
+      "title": "Task 5"
+    },
+    {
+      "id": "6787842dd5afb340b8ff2dcc",
+      "title": "Task 6"
+    },
+    {
+      "id": "679a4c63d0359989fff275df",
+      "title": "Task 7"
+    },
+    {
+      "id": "67878592e8b64048204e13ba",
+      "title": "Task 8"
+    },
+    {
+      "id": "6787868b7d7c5650aa21b529",
+      "title": "Task 9"
+    },
+    {
+      "id": "6787870b93ad4154701b9411",
+      "title": "Task 10"
+    },
+    {
+      "id": "67878956e0155b60edc2ee37",
+      "title": "Task 11"
+    },
+    {
+      "id": "67878ab70cc91669e1d36793",
+      "title": "Task 12"
+    },
+    {
+      "id": "678a286e61640f269cce6120",
+      "title": "Task 13"
+    },
+    {
+      "id": "678a4bcfd6296f2f27e73d01",
+      "title": "Task 14"
+    },
+    {
+      "id": "678a4c766f93de30541d64c7",
+      "title": "Task 15"
+    },
+    {
+      "id": "678a5cf1dfaa81374b81ac34",
+      "title": "Task 16"
+    },
+    {
+      "id": "678a5e7dffffba38c5ad16c4",
+      "title": "Task 17"
+    },
+    {
+      "id": "678a5ff976ffeb3a317389ff",
+      "title": "Task 18"
+    },
+    {
+      "id": "678a62bf606b353f833a4c68",
+      "title": "Task 19"
+    },
+    {
+      "id": "678a6326c51b30403f6ad342",
+      "title": "Task 20"
+    },
+    {
+      "id": "678a647e3d11a1420052380e",
+      "title": "Task 21"
+    },
+    {
+      "id": "678c71fff98bb11b517b4301",
+      "title": "Task 22"
+    },
+    {
+      "id": "678c78499046b5208a477fbf",
+      "title": "Task 23"
+    },
+    {
+      "id": "678c79b76f4b0f21fca8c270",
+      "title": "Task 24"
+    },
+    {
+      "id": "678c8f6deb9e3d2beaa01b76",
+      "title": "Task 25"
+    },
+    {
+      "id": "678c7dc5b2ec2924684304e3",
+      "title": "Task 26"
+    },
+    {
+      "id": "678c8933633414289d454294",
+      "title": "Task 27"
+    },
+    {
+      "id": "678c905464f7d02cfd434095",
+      "title": "Task 28"
+    },
+    {
+      "id": "678c936bee7c84300bedcd04",
+      "title": "Task 29"
+    },
+    {
+      "id": "678cba519e78d436d0ff78a7",
+      "title": "Task 30"
+    },
+    {
+      "id": "678cc15535e7113aa002de91",
+      "title": "Task 31"
+    },
+    {
+      "id": "678cc25d20c9043bae710c8f",
+      "title": "Task 32"
+    },
+    {
+      "id": "678cc3487d650a3c71a9a218",
+      "title": "Task 33"
+    },
+    {
+      "id": "678cc40b7d42393d240486a0",
+      "title": "Task 34"
+    },
+    {
+      "id": "678cc5439ab1443e4cedf876",
+      "title": "Task 35"
+    },
+    {
+      "id": "678cc6a94843043f402854b9",
+      "title": "Task 36"
+    },
+    {
+      "id": "678ccd19541fa0429bb98168",
+      "title": "Task 37"
+    },
+    {
+      "id": "678ccee8729b0043b3532e36",
+      "title": "Task 38"
+    },
+    {
+      "id": "678cd060967cba449f8db18c",
+      "title": "Task 39"
+    },
+    {
+      "id": "678cd0b85b3b59451118b77e",
+      "title": "Task 40"
+    },
+    {
+      "id": "678cd1cda8cc0345cd28a4b6",
+      "title": "Task 41"
+    },
+    {
+      "id": "678db8c06245409899bc3b60",
+      "title": "Dialogue 2: Deciding on a Development Environment"
+    },
+    {
+      "id": "678dbb627eb6df9a8012a25a",
+      "title": "Task 42"
+    },
+    {
+      "id": "678dbce63ee8469ba12d2a5a",
+      "title": "Task 43"
+    },
+    {
+      "id": "678e04af6029eba08ba0d185",
+      "title": "Task 44"
+    },
+    {
+      "id": "678e061358d93fa191593d1b",
+      "title": "Task 45"
+    },
+    {
+      "id": "678e0872539886a32d13e4f1",
+      "title": "Task 46"
+    },
+    {
+      "id": "678e0cbc0d01a2a5aea8dcec",
+      "title": "Task 47"
+    },
+    {
+      "id": "678e2d04161987aa6d23ee1e",
+      "title": "Task 48"
+    },
+    {
+      "id": "678e2db18a5be3ab4bf40e83",
+      "title": "Task 49"
+    },
+    {
+      "id": "678e2e53f840cbac095dce42",
+      "title": "Task 50"
+    },
+    {
+      "id": "678e2fb76f1044ad587f3dfc",
+      "title": "Task 51"
+    },
+    {
+      "id": "678e45847b26b2b9921fd1b6",
+      "title": "Task 52"
+    },
+    {
+      "id": "678e46b3efd48dba751da619",
+      "title": "Task 53"
+    },
+    {
+      "id": "678e4878f7df13bbcdbcdee4",
+      "title": "Task 54"
+    },
+    {
+      "id": "678e4ad65d8d37bdae19c5f0",
+      "title": "Task 55"
+    },
+    {
+      "id": "678e4be2a53566beddaf22c0",
+      "title": "Task 56"
+    },
+    {
+      "id": "678e4d99fbb552c013d24f77",
+      "title": "Task 57"
+    },
+    {
+      "id": "678e4fe7d886f7c2059786c9",
+      "title": "Task 58"
+    },
+    {
+      "id": "678e4e4d897d24c0c14dcf70",
+      "title": "Task 59"
+    },
+    {
+      "id": "678e51fba50998c4225afd2c",
+      "title": "Task 60"
+    },
+    {
+      "id": "678e530166a348c53050da54",
+      "title": "Task 61"
+    },
+    {
+      "id": "678e53e15f4348c62848f006",
+      "title": "Task 62"
+    },
+    {
+      "id": "678e54bc3ddecfc7172a87a7",
+      "title": "Task 63"
+    },
+    {
+      "id": "678e561968b6e8c868f5046d",
+      "title": "Task 64"
+    },
+    {
+      "id": "678e578422c9bbca762351ff",
+      "title": "Task 65"
+    },
+    {
+      "id": "678e5a7c4de8c4ccf4ed6ca9",
+      "title": "Task 66"
+    },
+    {
+      "id": "678e5b1feb705ccdee11860e",
+      "title": "Task 67"
+    },
+    {
+      "id": "678e5bf63bf7cfcf03bb2482",
+      "title": "Task 68"
+    },
+    {
+      "id": "678e5cb2176e3ecfdf0897a8",
+      "title": "Task 69"
+    },
+    {
+      "id": "678e5ea1763126d1a114b037",
+      "title": "Task 70"
+    },
+    {
+      "id": "678e6349dfa64cd74f90c49e",
+      "title": "Task 71"
+    },
+    {
+      "id": "678e64c6717ae8d93c9fbd31",
+      "title": "Task 72"
+    },
+    {
+      "id": "678e653ec0e961da24903ea1",
+      "title": "Task 73"
+    },
+    {
+      "id": "678e6602709b4edb24674a70",
+      "title": "Task 74"
+    },
+    {
+      "id": "678e6743de482fdc8d1a0e72",
+      "title": "Task 75"
+    },
+    {
+      "id": "678f05c97f4f1fe9a1cc32a0",
+      "title": "Dialogue 3: Selecting a Cloud Platform"
+    },
+    {
+      "id": "678f060f4fc16aea4bd38335",
+      "title": "Task 76"
+    },
+    {
+      "id": "678f07ded1b0daeba41de899",
+      "title": "Task 77"
+    },
+    {
+      "id": "678f0c899b1e0cee68c60a51",
+      "title": "Task 78"
+    },
+    {
+      "id": "678f0d7f3f28ebef17b3ffa9",
+      "title": "Task 79"
+    },
+    {
+      "id": "678f1c75b08070f5f3b19bd6",
+      "title": "Task 80"
+    },
+    {
+      "id": "678f1e7f5432e3f7e503ba03",
+      "title": "Task 81"
+    },
+    {
+      "id": "678f1f395f27b9f8e2d3a77a",
+      "title": "Task 82"
+    },
+    {
+      "id": "678f22484cfcbffb90cf48f3",
+      "title": "Task 83"
+    },
+    {
+      "id": "678f2346eea2edfca10f7699",
+      "title": "Task 84"
+    },
+    {
+      "id": "678f2453a920dbfde5bf34ac",
+      "title": "Task 85"
+    },
+    {
+      "id": "678f25d4d77c34ff4b9fe635",
+      "title": "Task 86"
+    },
+    {
+      "id": "678f279bb459ed0120352cc3",
+      "title": "Task 87"
+    },
+    {
+      "id": "678f295fb59bb404fb26c090",
+      "title": "Task 88"
+    },
+    {
+      "id": "678f2c14cedd3306d65371a4",
+      "title": "Task 89"
+    },
+    {
+      "id": "678f2cde94bd54080ec7f081",
+      "title": "Task 90"
+    },
+    {
+      "id": "678f2df518326c09f049cc11",
+      "title": "Task 91"
+    },
+    {
+      "id": "678f2e98302e2b0af0bd943e",
+      "title": "Task 92"
+    },
+    {
+      "id": "678f2fb5ed7b5d0c68613aed",
+      "title": "Task 93"
+    },
+    {
+      "id": "678f31115e1f830efcc5c6e4",
+      "title": "Task 94"
+    },
+    {
+      "id": "678f31f92c4240103318e5d6",
+      "title": "Task 95"
+    },
+    {
+      "id": "678f32918a004211d4277928",
+      "title": "Task 96"
+    },
+    {
+      "id": "678f553988dc8e1d138454aa",
+      "title": "Task 97"
+    },
+    {
+      "id": "678f577de4d26a2050bb5b6f",
+      "title": "Task 98"
+    },
+    {
+      "id": "678f5b46fdeb0e244770edf4",
+      "title": "Task 99"
+    },
+    {
+      "id": "678f5c6bec7ed02619ef0b42",
+      "title": "Task 100"
+    },
+    {
+      "id": "678f64b50ee5932b28bd37e3",
+      "title": "Task 101"
+    },
+    {
+      "id": "678f6589a49d332c6ba27cfd",
+      "title": "Task 102"
+    },
+    {
+      "id": "678f664b836e762dbf79b96a",
+      "title": "Task 103"
+    },
+    {
+      "id": "678f671c04f9932e83281d09",
+      "title": "Task 104"
     }
   ],
   "helpCategory": "English",
