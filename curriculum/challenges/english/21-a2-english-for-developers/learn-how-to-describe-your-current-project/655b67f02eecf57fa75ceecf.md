@@ -12,11 +12,11 @@ dashedName: task-8
 `Stay` is used to indicate remaining in a particular state or condition. 
 It's often used in instructions or advice to keep oneself in a certain situation. For example:
 
-`Stay safe online` (continue being safe while using the internet) 
+- `Stay safe online.` - Continue being safe while using the internet. 
 
-`Stay calm during the test` (continue being calm)
+- `Stay calm during the test.` - Continue being calm.
 
-`Stay focused on your work` (continue paying attention to your work)
+- `Stay focused on your work.` - Continue paying attention to your work.
 
 
 # --fillInTheBlank--
