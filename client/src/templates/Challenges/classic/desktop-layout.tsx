@@ -357,7 +357,9 @@ const DesktopLayout = (props: DesktopLayoutProps): JSX.Element => {
             data-playwright-test-label='preview-pane'
           >
             <ReflexContainer orientation='horizontal'>
-              {displayPreviewPane && <ReflexElement>{preview}</ReflexElement>}
+              {displayPreviewPane && (
+                <ReflexElement {...reflexProps}>{preview}</ReflexElement>
+              )}
               {displayPreviewPane && displayPreviewConsole && (
                 <ReflexSplitter propagate={true} {...resizeProps} />
               )}

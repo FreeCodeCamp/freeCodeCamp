@@ -16,9 +16,11 @@ const registerServiceWorker = async () => {
 };
 
 export const XtermTerminal = ({
-  xtermFitRef
+  xtermFitRef,
+  dimensions
 }: {
   xtermFitRef: MutableRefObject<FitAddon | null>;
+  dimensions?: { height: number; width: number };
 }) => {
   const termContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -103,8 +105,16 @@ export const XtermTerminal = ({
     };
   }, [xtermFitRef]);
 
+  useEffect(() => {
+    if (xtermFitRef.current) xtermFitRef.current.fit();
+
+    // dimensions is an implicit dependency, since it's not directly used by the
+    // effect, but fitAddon.fit() needs to be called whenever the container size
+    // changes.
+  }, [xtermFitRef, dimensions]);
+
   return (
-    <div ref={termContainerRef}>
+    <div style={{ height: dimensions?.height }} ref={termContainerRef}>
       <link rel='stylesheet' href='/js/xterm.css' />
     </div>
   );
