@@ -245,15 +245,39 @@ async function setup() {
   };
 }
 
-// cleanup calls some async functions, but it's the last thing that happens, so
-// no need to await anything.
-function cleanup() {
-  if (browser) {
-    browser.close();
-  }
-  liveServer.shutdown();
-  spinner.stop();
+// First cleanup() inside catch block: Closes the browser if an error occurs.
+//Second cleanup() inside finally block: Ensures the browser is closed after execution, even if there are no errors.
+//This guarantees that the browser cleanup happens in both normal and error conditions.
+async function cleanup() {
+    if (browser) {
+        try {
+            if (browser.process()) {
+                await browser.close();
+                console.log('Browser closed successfully.');
+            }
+        } catch (err) {
+            console.error('Error closing browser:', err);
+        }
+    }
 }
+
+async function main() {
+    try {
+        // Assume browser is launched here
+        browser = await launchBrowser();
+
+        // Perform some operations...
+
+    } catch (error) {
+        console.error('Error occurred:', error);
+        await cleanup(); // Ensure cleanup on error
+    } finally {
+        await cleanup(); // Ensure cleanup at the end
+    }
+}
+
+main();
+
 
 function runTests(challengeData) {
   describe('Check challenges', function () {
