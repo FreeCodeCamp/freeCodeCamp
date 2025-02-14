@@ -406,7 +406,9 @@ export function challengeHasPreview({ challengeType }: ChallengeMeta): boolean {
 
 export function isJavaScriptChallenge({
   challengeType
-}: ChallengeMeta): boolean {
+}: {
+  challengeType: number;
+}): boolean {
   return (
     challengeType === challengeTypes.js ||
     challengeType === challengeTypes.jsProject
