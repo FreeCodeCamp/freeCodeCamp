@@ -394,7 +394,11 @@ export function updateProjectPreview(
   }
 }
 
-export function challengeHasPreview({ challengeType }: ChallengeMeta): boolean {
+export function challengeHasPreview({
+  challengeType
+}: {
+  challengeType: number;
+}): boolean {
   return (
     challengeType === challengeTypes.html ||
     challengeType === challengeTypes.modern ||
