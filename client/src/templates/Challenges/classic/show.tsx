@@ -63,6 +63,7 @@ import { preloadPage } from '../../../../utils/gatsby/page-loading';
 import envData from '../../../../config/env.json';
 import ToolPanel from '../components/tool-panel';
 import { getChallengePaths } from '../utils/challenge-paths';
+import { challengeHasPreview } from '../utils/build';
 import { XtermTerminal } from './xterm';
 import MultifileEditor from './multifile-editor';
 import DesktopLayout from './desktop-layout';
@@ -240,18 +241,10 @@ function ShowClassic({
     `intro:${superBlock}.blocks.${block}.title`
   )}: ${title}`;
   const windowTitle = `${blockNameTitle} | freeCodeCamp.org`;
-  const showConsole = challengeType === challengeTypes.js;
-  // TODO: show preview should NOT be computed like this. That determination is
-  // made during the build (at least twice!). It should be either a prop or
-  // computed from challengeType
-  const showPreview = [
-    challengeTypes.html,
-    challengeTypes.modern,
-    challengeTypes.multifileCertProject,
-    challengeTypes.multifilePythonCertProject,
-    challengeTypes.python,
-    challengeTypes.lab
-  ].includes(challengeType);
+  const showConsole =
+    challengeType === challengeTypes.js ||
+    challengeType === challengeTypes.jsLab;
+  const hasPreview = challengeHasPreview({ challengeType });
   const getLayoutState = () => {
     const reflexLayout = store.get(REFLEX_LAYOUT) as ReflexLayout | null;
 
@@ -462,7 +455,7 @@ function ShowClassic({
               isUsingKeyboardInTablist: usingKeyboardInTablist
             })}
             hasEditableBoundaries={hasEditableBoundaries}
-            hasPreview={showPreview}
+            hasPreview={hasPreview}
             instructions={renderInstructionsPanel({
               toolPanel: null,
               hasDemo: demoType === 'onClick'
@@ -497,7 +490,7 @@ function ShowClassic({
               isUsingKeyboardInTablist: usingKeyboardInTablist
             })}
             hasEditableBoundaries={hasEditableBoundaries}
-            hasPreview={showPreview}
+            hasPreview={hasPreview}
             instructions={renderInstructionsPanel({
               toolPanel: <ToolPanel guideUrl={guideUrl} videoUrl={videoUrl} />,
               hasDemo: demoType === 'onClick'

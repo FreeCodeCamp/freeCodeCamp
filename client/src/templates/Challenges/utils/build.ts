@@ -107,7 +107,8 @@ export const buildFunctions = {
   [challengeTypes.colab]: buildBackendChallenge,
   [challengeTypes.python]: buildPythonChallenge,
   [challengeTypes.multifilePythonCertProject]: buildPythonChallenge,
-  [challengeTypes.lab]: buildDOMChallenge
+  [challengeTypes.lab]: buildDOMChallenge,
+  [challengeTypes.jsLab]: buildJSChallenge
 };
 
 export function canBuildChallenge(challengeData: BuildChallengeData): boolean {
@@ -393,7 +394,11 @@ export function updateProjectPreview(
   }
 }
 
-export function challengeHasPreview({ challengeType }: ChallengeMeta): boolean {
+export function challengeHasPreview({
+  challengeType
+}: {
+  challengeType: number;
+}): boolean {
   return (
     challengeType === challengeTypes.html ||
     challengeType === challengeTypes.modern ||
@@ -409,6 +414,7 @@ export function isJavaScriptChallenge({
 }: ChallengeMeta): boolean {
   return (
     challengeType === challengeTypes.js ||
-    challengeType === challengeTypes.jsProject
+    challengeType === challengeTypes.jsProject ||
+    challengeType === challengeTypes.jsLab
   );
 }
