@@ -8,7 +8,7 @@ dashedName: what-is-margin-collapsing
 
 # --description--
 
-Watch the lecture video and answer the questions below.
+Watch the video or read the transcript and answer the questions below.
 
 # --questions--
 
