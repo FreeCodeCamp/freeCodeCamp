@@ -13,23 +13,23 @@ Because the box model concept is so incredibly fundamental, let’s dig a bit de
 
 ## --text--
 
-What is the difference between the standard and alternative box model?
+Which of the following correctly describes the difference between the `content-box` and `border-box` box models in CSS?
 
 ## --answers--
 
-The standard box model calculates the width and height of an element based on the content alone, while the alternative box model calculates based on the content plus padding and border.
+The `content-box` model includes content, padding, and border within the specified width and height, while the `border-box` model includes only the content.
 
 ---
 
-The standard box model includes content, padding, and border, while the alternative box model includes only the content.
+In the `content-box` model, the specified width and height apply only to the content, excluding padding and border, whereas in the `border-box` model, they include padding and border.
 
 ---
 
-The standard box model and the alternative box model are the same and have no differences.
+The `content-box` model and the `border-box` model are the same and have no differences.
 
 ---
 
-The standard box model includes only the content, while the alternative box model includes content, padding, and border.
+In the `border-box` model, the width and height apply only to the content, while in the `content-box` model, they include padding and border
 
 ## --video-solution--
 
