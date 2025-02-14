@@ -240,11 +240,13 @@ function ShowClassic({
     `intro:${superBlock}.blocks.${block}.title`
   )}: ${title}`;
   const windowTitle = `${blockNameTitle} | freeCodeCamp.org`;
-  const showConsole = challengeType === challengeTypes.js;
+  const showConsole =
+    challengeType === challengeTypes.js ||
+    challengeType === challengeTypes.jsLab;
   // TODO: show preview should NOT be computed like this. That determination is
   // made during the build (at least twice!). It should be either a prop or
   // computed from challengeType
-  const showPreview = [
+  const hasPreview = [
     challengeTypes.html,
     challengeTypes.modern,
     challengeTypes.multifileCertProject,
@@ -462,7 +464,7 @@ function ShowClassic({
               isUsingKeyboardInTablist: usingKeyboardInTablist
             })}
             hasEditableBoundaries={hasEditableBoundaries}
-            hasPreview={showPreview}
+            hasPreview={hasPreview}
             instructions={renderInstructionsPanel({
               toolPanel: null,
               hasDemo: demoType === 'onClick'
@@ -497,7 +499,7 @@ function ShowClassic({
               isUsingKeyboardInTablist: usingKeyboardInTablist
             })}
             hasEditableBoundaries={hasEditableBoundaries}
-            hasPreview={showPreview}
+            hasPreview={hasPreview}
             instructions={renderInstructionsPanel({
               toolPanel: <ToolPanel guideUrl={guideUrl} videoUrl={videoUrl} />,
               hasDemo: demoType === 'onClick'
