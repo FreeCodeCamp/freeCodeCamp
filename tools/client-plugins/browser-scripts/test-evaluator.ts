@@ -132,7 +132,7 @@ ctx.onmessage = async (e: TestEvaluatorEvent) => {
 __utils.flushLogs();
 __userCodeWasExecuted = true;
 __utils.toggleProxyLogger(true);
-${e.data.testString}`)) as unknown;
+(async () => {${e.data.testString}})()`)) as unknown;
     } catch (err) {
       if (__userCodeWasExecuted) {
         // rethrow error, since test failed.
